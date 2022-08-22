@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de Idades</title>
+
+    <style>
+        body{
+            background: #85D3F2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        h1{
+            color: rgb(255, 255, 255);
+            font-size: 2em;
+            text-align: center;
+        }
+
+        #principal{
+            background: #ffffff;
+            width: 600px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 5px 5px 5px #88888849;
+        }
+
+        img{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+
+        .rodape{
+            color: #ffffff;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        button{
+            font-size: 15px;
+        }
+
+        #resposta{ 
+            text-align: center;
+
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <h1>Verificador de Idade</h1>
+
+        <div id="principal"> 
+
+            Ano de Nascimento: <input type="number" name="anoNascimento" id="anoNascimento"> 
+            <p>Sexo: 
+                <input type="radio" name="radsex" id="sexo masculino"> 
+                <label for="masculino"> Masculino </label>
+                <input type="radio" name="radsex" id="sexoFeminino">
+                <label for="feminino"> Feminino</label>
+
+            <div>
+                <button onclick="clicar()" name="res" id="res"> Verificar </button>
+            </div>
+            
+
+            <p id="textoInicial">
+                Preencha os dados acima para ver o resultado!
+            </p>
+            <div>
+                <img id="foto" src="/atv-idade/3353181.jpg" width="300">
+            </div>
+            
+
+            <div id="resposta">
+                <p id="resposta"></p>
+                
+            </div>
+            
+
+
+        </div>
+
+        <p class="rodape">Exercício CursoEmVideo</p>
+
+    <script>
+        //Recebendo Inputs
+        var entradaAnoNascimento = window.document.getElementById("anoNascimento");
+        var texto = window.document.getElementById("resposta");
+        var textoInicial = window.document.getElementById('textoInicial')
+        var radsex = document.getElementsByName('radsex');
+        var imagem = document.getElementById('foto');
+
+        //Ano atual
+        var agora = new Date();
+        var anoAtual = agora.getFullYear();
+
+        
+
+        function clicar() {
+            //Calculo idade
+            var anoNascimento = entradaAnoNascimento.value;
+            var idade = parseInt(anoAtual - anoNascimento);
+
+            //Resultado
+            if (radsex[1].checked) {
+                textoInicial.innerHTML = ''
+                texto.innerHTML = `Vejo uma <strong>Mulher</strong> com ${idade} anos!`
+                
+                if (idade >=0 && idade <= 13){
+                    imagem.src = '/atv-idade/menina.png'
+                    
+                } else if (idade < 21 ) {
+                    imagem.src = '/atv-idade/mulher-adolescente.png'
+
+                } else if (idade < 60) {
+                    imagem.src = '/atv-idade/mulher adulta.png'
+                } else {
+                    imagem.src = '/atv-idade/senhora.png'
+
+                }
+
+            } else if (radsex[0].checked) {
+                textoInicial.innerHTML = ''
+                texto.innerHTML = `Vejo um <strong>Homem</strong> com ${idade} anos!`
+            
+                if (idade >=0 && idade <= 13){
+                    
+                    
+                } else if (idade < 21 ) {
+
+                } else if (idade < 60) {
+
+                } else {
+                    
+                }
+            }
+
+            console.log()
+            
+        }
+
+    </script>
+
+</body>
+</html>
